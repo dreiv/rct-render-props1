@@ -3,6 +3,17 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 
+class Cat extends React.Component {
+  render() {
+    const mouse = this.props.mouse;
+    return (
+      <div className="cat" style={{ left: mouse.x, top: mouse.y }}>
+        🐈
+      </div>
+    );
+  }
+}
+
 class Mouse extends React.Component {
   constructor(props) {
     super(props);
@@ -18,11 +29,8 @@ class Mouse extends React.Component {
 
   render() {
     return (
-      <div style={{ height: "100%" }} onMouseMove={this.handleMouseMove}>
-        {/* ...but how do we render something other than a <p>? */}
-        <p>
-          The current mouse position is ({this.state.x}, {this.state.y})
-        </p>
+      <div className="mouse-pad" onMouseMove={this.handleMouseMove}>
+        {this.props.render(this.state)}
       </div>
     );
   }
@@ -33,7 +41,7 @@ class MouseTracker extends React.Component {
     return (
       <div>
         <h1>Move the mouse around!</h1>
-        <Mouse />
+        <Mouse render={mouse => <Cat mouse={mouse} />} />
       </div>
     );
   }

@@ -2,3 +2,13 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+.cat {
+  display: inline-block;
+  position: absolute;
+}
+
+.mouse-pad {
+  height: 400px;
+  border: 1px solid;
+}
